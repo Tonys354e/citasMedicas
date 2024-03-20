@@ -1,3 +1,4 @@
+
 @extends('layouts.panel')
 
 @section('content')
@@ -5,10 +6,10 @@
         <div class="card-header border-0">
             <div class="row align-items-center">
                 <div class="col">
-                    <h3 class="mb-0">Especialidades</h3>
+                    <h3 class="mb-0">Medicos</h3>
                 </div>
                 <div class="col text-right">
-                    <a href="{{ url('especialidades/create') }}" class="btn btn-sm btn-primary">Nueva especialidad</a>
+                    <a href="{{ url('medicos/create') }}" class="btn btn-sm btn-primary">Nuevo medico</a>
                 </div>
             </div>
         </div>
@@ -25,24 +26,28 @@
                 <thead class="thead-light">
                     <tr>
                         <th scope="col">Nombre</th>
-                        <th scope="col">Descripción</th>
+                        <th scope="col">Correo</th>
+                        <th scope="col">Cédula</th>
                         <th scope="col">Opciones</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($specialties as $especialidad)
+                    @foreach ($doctors as $doctor)
                         <tr>
                             <th scope="row">
-                                {{ $especialidad->name }}
+                                {{ $doctor->name }}
                             </th>
                             <td>
-                                {{ $especialidad->description }}
+                                {{ $doctor->email }}
                             </td>
                             <td>
-                                <form action="{{ url('/especialidades/' . $especialidad->id) }}" method="POST">
+                                {{ $doctor->cedula }}
+                            </td>
+                            <td>
+                                <form action="{{ url('/medicos/' . $doctor->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <a href="{{ url('/especialidades/' . $especialidad->id . '/edit') }}"
+                                    <a href="{{ url('/medicos/' . $doctor->id . '/edit') }}"
                                         class="btn btn-sm btn-primary">Editar</a>
                                     <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
                                 </form>
